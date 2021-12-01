@@ -1,7 +1,13 @@
 const changeColor = document.getElementById("changeColor");
 
-chrome.storage.sync.get("color", ({ color }) => {
-  changeColor.style.backgroundColor = color;
+//handles the right color showing up in the popup window
+chrome.storage.sync.get(["volunteerStatus", "color"], ({ volunteerStatus, color }) => {
+  if (volunteerStatus === true){
+    changeColor.style.backgroundColor = color;
+  } else {
+    changeColor.style.backgroundColor = "#FFFFFF";
+    console.log("we're here")
+  }
 });
 
 // When the button is clicked, inject setPageBackgroundColor into current page
